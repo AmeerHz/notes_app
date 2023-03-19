@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:notes_app/views/widgets/custom_note_item.dart';
+import 'package:notes_app/views/widgets/note_item.dart';
 
 class NotesListView extends StatelessWidget {
   const NotesListView({super.key});
@@ -14,7 +14,7 @@ class NotesListView extends StatelessWidget {
         itemBuilder: (context, index) {
         return const Padding(
           padding: EdgeInsets.symmetric(vertical: 4),
-          child: CustomNoteItem(),
+          child: NoteItem(),
         );
       }),
     );
