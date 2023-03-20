@@ -13,7 +13,7 @@ class NotesListView extends StatelessWidget {
       builder: (context, state) {
         List <NoteModel> notes = BlocProvider.of<NotesCubit>(context).notes??[];
         return Padding(
-          padding: EdgeInsets.symmetric(vertical: 16),
+          padding:const EdgeInsets.symmetric(vertical: 16),
           child: ListView.builder(
             itemCount: notes.length,
               padding: EdgeInsets.zero,
