@@ -4,10 +4,11 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:notes_app/constants.dart';
 
 class CustomTextField extends StatelessWidget {
-  const CustomTextField({super.key, required this.hint,  this.maxLines=1, this.onSaved});
+  const CustomTextField({super.key, required this.hint,  this.maxLines=1, this.onSaved, this.onChanged});
   final String hint; 
   final int maxLines; 
   final void Function(String?)? onSaved;
+  final Function(String)? onChanged;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -19,6 +20,7 @@ class CustomTextField extends StatelessWidget {
         }
       },
       onSaved: onSaved,
+      onChanged: onChanged,
       maxLines: maxLines,
       cursorColor: kPrimaryColor,
       decoration: InputDecoration(
