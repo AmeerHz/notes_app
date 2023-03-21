@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:notes_app/constants.dart';
 import 'package:notes_app/views/widgets/custom_app_bar_icon.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({super.key, required this.title, required this.icon, this.onPressed});
+  const CustomAppBar(
+      {super.key, required this.title, required this.icon, this.onPressed});
   final String title;
   final IconData icon;
   final void Function()? onPressed;
@@ -13,6 +15,7 @@ class CustomAppBar extends StatelessWidget {
         Text(
           title,
           style: const TextStyle(
+            color: kPrimaryColor,
             fontSize: 32,
           ),
         ),

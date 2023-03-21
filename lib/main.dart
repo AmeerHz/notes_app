@@ -6,6 +6,7 @@ import 'package:notes_app/models/note_model.dart';
 import 'package:notes_app/simple_bloc_observer.dart';
 import 'package:notes_app/views/notes_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_app/views/splash_view.dart';
 
 import 'cubits/notes_cubit/notes_cubit.dart';
 
@@ -31,7 +32,7 @@ class NotesApp extends StatelessWidget {
           fontFamily: 'Poppins',
           brightness: Brightness.dark,
         ),
-        home: const NotesView(),
+        home: const SplashView(),
       ),
     );
   }

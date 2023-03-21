@@ -40,6 +40,7 @@ class _ColorsListViewState extends State<ColorsListView> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
+
       height: 38 * 2,
       child: ListView.builder(
           itemCount: kColors.length,

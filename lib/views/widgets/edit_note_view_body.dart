@@ -39,6 +39,7 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
               widget.note.save();
               BlocProvider.of<NotesCubit>(context).fetchAllNotes();
               Navigator.pop(context);
+              showSnackBar(context, 'Note is edited');
             },
             title: 'Edit Note',
             icon: Icons.check,
