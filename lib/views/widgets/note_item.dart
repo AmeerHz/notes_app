@@ -19,6 +19,7 @@ class NoteItem extends StatelessWidget {
             note: note,
           );
         }));
+        BlocProvider.of<NotesCubit>(context).isEdit = true ;
       },
       child: Container(
         padding: const EdgeInsets.only(

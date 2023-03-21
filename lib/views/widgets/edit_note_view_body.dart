@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:notes_app/cubits/notes_cubit/notes_cubit.dart';
 import 'package:notes_app/views/widgets/custom_app_bar.dart';
 import 'package:notes_app/views/widgets/custom_text_field.dart';
@@ -21,6 +22,7 @@ class EditNoteViewBody extends StatefulWidget {
 
 class _EditNoteViewBodyState extends State<EditNoteViewBody> {
   String? title, content;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -38,11 +40,13 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
               widget.note.subtitle = content ?? widget.note.subtitle;
               widget.note.save();
               BlocProvider.of<NotesCubit>(context).fetchAllNotes();
+              BlocProvider.of<NotesCubit>(context).isEdit = false;
               Navigator.pop(context);
               showSnackBar(context, 'Note is edited');
             },
             title: 'Edit Note',
-            icon: Icons.check,
+            icon: FontAwesomeIcons.check,
+            icon2: FontAwesomeIcons.xmark,
           ),
           const SizedBox(
             height: 50,
@@ -66,12 +70,9 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
           const SizedBox(
             height: 16,
           ),
-           EditColorsListView(note: widget.note),
+          EditColorsListView(note: widget.note),
         ],
       ),
     );
   }
 }
-
-
-

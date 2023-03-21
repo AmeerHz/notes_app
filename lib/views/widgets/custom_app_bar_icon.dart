@@ -13,7 +13,11 @@ class CustomAppBarIcon extends StatelessWidget {
           color: Colors.white.withOpacity(0.06),
           borderRadius: BorderRadius.circular(8)),
       child: IconButton(
-        icon: Icon(icon),
+        icon: Icon(
+          icon,
+          size: 26,
+          color: Colors.white,
+        ),
         onPressed: onPressed,
       ),
     );
