@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../constants.dart';
+import '../../cubits/language/language_cubit.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({super.key, this.onTap, this.isLoading = false});
@@ -8,6 +10,7 @@ class CustomButton extends StatelessWidget {
   final bool isLoading;
   @override
   Widget build(BuildContext context) {
+    var lan =  BlocProvider.of<LanguageCubit>(context);
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -25,9 +28,9 @@ class CustomButton extends StatelessWidget {
                   child:  CircularProgressIndicator(
                     color: Colors.black,
                   ))
-              : const Text(
-                  'Add',
-                  style: TextStyle(
+              :  Text(
+                  lan.getTexts('button'),
+                  style:const TextStyle(
                     color: Colors.black,
                     fontSize: 21,
                     fontWeight: FontWeight.bold,

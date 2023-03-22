@@ -15,7 +15,7 @@ class CustomAppBarIcon extends StatelessWidget {
       child: IconButton(
         icon: Icon(
           icon,
-          size: 26,
+          size: 24,
           color: Colors.white,
         ),
         onPressed: onPressed,

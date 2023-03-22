@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'cubits/language/language_cubit.dart';
 
 const kPrimaryColor = Color(0xffF0F0F0);
 const kNotesBox = 'notes_box';
@@ -20,11 +23,13 @@ void showSnackBar(BuildContext context, String message) {
     SnackBar(
       backgroundColor: Colors.black.withOpacity(0.5),
       content: Directionality(
-        textDirection: TextDirection.rtl,
+        textDirection: BlocProvider.of<LanguageCubit>(context).isEn
+            ? TextDirection.ltr
+            : TextDirection.rtl,
         child: Text(
           message,
           style: const TextStyle(
-            color : kPrimaryColor,
+            color: kPrimaryColor,
             fontSize: 17,
           ),
         ),

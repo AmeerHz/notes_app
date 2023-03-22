@@ -8,11 +8,14 @@ import 'package:notes_app/views/widgets/add_note_form.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../cubits/language/language_cubit.dart';
+
 class AddNoteBottomSheet extends StatelessWidget {
   const AddNoteBottomSheet({super.key});
-
+  
   @override
   Widget build(BuildContext context) {
+    var lan =  BlocProvider.of<LanguageCubit>(context);
     return BlocProvider(
       create: (context) => AddNoteCubit(),
       child: BlocConsumer<AddNoteCubit, AddNoteState>(
@@ -20,7 +23,7 @@ class AddNoteBottomSheet extends StatelessWidget {
           if (state is AddNoteSuccess) {
             BlocProvider.of<NotesCubit>(context).fetchAllNotes();
             Navigator.pop(context);
-            showSnackBar(context, 'Note is added');
+            showSnackBar(context, lan.getTexts('show_a'));
           }
           if (state is AddNoteIFailure) {}
         },
@@ -28,7 +31,7 @@ class AddNoteBottomSheet extends StatelessWidget {
           return AbsorbPointer(
             absorbing: state is AddNoteLoading ? true : false,
             child: Directionality(
-              textDirection: TextDirection.rtl,
+              textDirection:lan.isEn? TextDirection.ltr : TextDirection.rtl,
               child: Padding(
                 padding: EdgeInsets.only(
                     right: 16,

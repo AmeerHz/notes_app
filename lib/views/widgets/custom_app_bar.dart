@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/constants.dart';
+import 'package:notes_app/cubits/language/language_cubit.dart';
 import 'package:notes_app/cubits/notes_cubit/notes_cubit.dart';
 import 'package:notes_app/views/widgets/custom_app_bar_icon.dart';
 
@@ -15,38 +16,41 @@ class CustomAppBar extends StatelessWidget {
   final IconData icon;
   final IconData? icon2;
   final void Function()? onPressed;
+
   @override
   Widget build(BuildContext context) {
-    return Directionality(
-      textDirection: TextDirection.rtl,
-      child: Row(
-        children: [
-          Text(
-            title,
-            style: const TextStyle(
-              color: kPrimaryColor,
-              fontSize: 32,
+    var lan = BlocProvider.of<LanguageCubit>(context);
+    return BlocBuilder<LanguageCubit, LanguageState>(
+      builder: (context, state) {
+        return Row(
+          children: [
+            Text(
+              title,
+              style: const TextStyle(
+                color: kPrimaryColor,
+                fontSize: 32,
+              ),
             ),
-          ),
-          const Spacer(),
-          BlocProvider.of<NotesCubit>(context).isEdit
-              ? Padding(
-                  padding: const EdgeInsets.only(right: 16),
-                  child: CustomAppBarIcon(
-                    onPressed: () {
-                      BlocProvider.of<NotesCubit>(context).isEdit = false;
-                      Navigator.pop(context);
-                    },
-                    icon: icon2!,
-                  ),
-                )
-              : const Spacer(),
-          CustomAppBarIcon(
-            onPressed: onPressed,
-            icon: icon,
-          ),
-        ],
-      ),
+            const Spacer(),
+            BlocProvider.of<NotesCubit>(context).isEdit
+                ? Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: CustomAppBarIcon(
+                      onPressed: () {
+                        BlocProvider.of<NotesCubit>(context).isEdit = false;
+                        Navigator.pop(context);
+                      },
+                      icon: icon2!,
+                    ),
+                  )
+                : Container(),
+            CustomAppBarIcon(
+              onPressed: onPressed,
+              icon: icon,
+            ),
+          ],
+        );
+      },
     );
   }
 }

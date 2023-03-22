@@ -6,6 +6,7 @@ import 'package:notes_app/views/widgets/custom_button.dart';
 import 'package:notes_app/views/widgets/custom_text_field.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../cubits/language/language_cubit.dart';
 import 'colors_list_view.dart';
 
 class AddNoteForm extends StatefulWidget {
@@ -22,6 +23,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
   String? title, subTitle;
   @override
   Widget build(BuildContext context) {
+    var lan =  BlocProvider.of<LanguageCubit>(context);
     return Form(
       key: formKey,
       autovalidateMode: autovalidateMode,
@@ -34,7 +36,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
             onSaved: (value) {
               title = value;
             },
-            hint: 'Title',
+            hint: lan.getTexts('f_F'),
           ),
           const SizedBox(
             height: 16,
@@ -43,7 +45,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
             onSaved: (value) {
               subTitle = value;
             },
-            hint: 'Content',
+            hint: lan.getTexts('s_F'),
             maxLines: 5,
           ),
           const SizedBox(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_app/cubits/language/language_cubit.dart';
 
 import '../../constants.dart';
 import '../../cubits/notes_cubit/notes_cubit.dart';
@@ -11,7 +12,7 @@ class SearchResultsBody extends StatelessWidget {
   final String query;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) { 
     List<NoteModel>? notesResult = query.isEmpty
         ? BlocProvider.of<NotesCubit>(context).notes
         : BlocProvider.of<NotesCubit>(context)
@@ -23,12 +24,12 @@ class SearchResultsBody extends StatelessWidget {
       listener: (context, state) {
         if (state is NotesSuccess) {
           notesResult = query.isEmpty
-              ? BlocProvider.of<NotesCubit>(context).notes
-              : BlocProvider.of<NotesCubit>(context)
-                  .notes!
-                  .where((s) =>
-                      s.title.startsWith(query) || s.subtitle.startsWith(query))
-                  .toList();
+        ? BlocProvider.of<NotesCubit>(context).notes
+        : BlocProvider.of<NotesCubit>(context)
+            .notes!
+            .where((e) =>
+                e.title.startsWith(query) || e.subtitle.startsWith(query))
+            .toList();
         }
       },
       builder: (context, state) {
@@ -41,10 +42,10 @@ class SearchResultsBody extends StatelessWidget {
               ),
               Expanded(
                   child: notesResult!.isEmpty
-                      ? const Center(
+                      ?  Center(
                           child: Text(
-                            'No Results',
-                            style: TextStyle(
+                            BlocProvider.of<LanguageCubit>(context).getTexts('no_r'),
+                            style: const TextStyle(
                               fontSize: 21,
                               fontWeight: FontWeight.bold,
                               color: kPrimaryColor,

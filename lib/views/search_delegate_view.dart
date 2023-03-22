@@ -2,6 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:notes_app/views/widgets/search_results_body.dart';
 
 class SearchDelegateView extends SearchDelegate {
+   SearchDelegateView({
+       required String hintText,
+     }) : super(
+       searchFieldLabel: hintText,
+       keyboardType: TextInputType.text,
+       textInputAction: TextInputAction.search,
+       
+     );
   @override
   List<Widget>? buildActions(BuildContext context) {
     return [
