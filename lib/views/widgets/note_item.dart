@@ -21,62 +21,65 @@ class NoteItem extends StatelessWidget {
         }));
         BlocProvider.of<NotesCubit>(context).isEdit = true ;
       },
-      child: Container(
-        padding: const EdgeInsets.only(
-          top: 24,
-          bottom: 24,
-          left: 24,
-          right: 16,
-        ),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          color: Color(note.color),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            ListTile(
-              title: Text(
-                note.title,
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 30,
+      child: Directionality(
+        textDirection: TextDirection.rtl,
+        child: Container(
+          padding: const EdgeInsets.only(
+            top: 24,
+            bottom: 24,
+            left: 24,
+            right: 16,
+          ),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16),
+            color: Color(note.color),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              ListTile(
+                title: Text(
+                  note.title,
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 30,
+                  ),
+                ),
+                subtitle: Padding(
+                  padding: const EdgeInsets.only(top: 16),
+                  child: Text(
+                    note.subtitle,
+                    style: TextStyle(
+                      color: Colors.black.withOpacity(0.5),
+                      fontSize: 19,
+                    ),
+                  ),
+                ),
+                trailing: IconButton(
+                  icon: const Icon(
+                    FontAwesomeIcons.trash,
+                    color: Colors.black,
+                    size: 23,
+                  ),
+                  onPressed: () {
+                    note.delete();
+                    BlocProvider.of<NotesCubit>(context).fetchAllNotes();
+                    showSnackBar(context, 'Note is deleted');
+                  },
                 ),
               ),
-              subtitle: Padding(
-                padding: const EdgeInsets.only(top: 16),
+              Padding(
+                padding: const EdgeInsets.only(right: 24),
                 child: Text(
-                  note.subtitle,
+                  note.date,
                   style: TextStyle(
                     color: Colors.black.withOpacity(0.5),
-                    fontSize: 19,
+                    fontSize: 16,
                   ),
                 ),
               ),
-              trailing: IconButton(
-                icon: const Icon(
-                  FontAwesomeIcons.trash,
-                  color: Colors.black,
-                  size: 23,
-                ),
-                onPressed: () {
-                  note.delete();
-                  BlocProvider.of<NotesCubit>(context).fetchAllNotes();
-                  showSnackBar(context, 'Note is Deleted');
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(right: 24),
-              child: Text(
-                note.date,
-                style: TextStyle(
-                  color: Colors.black.withOpacity(0.5),
-                  fontSize: 16,
-                ),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

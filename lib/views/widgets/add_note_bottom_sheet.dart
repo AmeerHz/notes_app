@@ -20,20 +20,23 @@ class AddNoteBottomSheet extends StatelessWidget {
           if (state is AddNoteSuccess) {
             BlocProvider.of<NotesCubit>(context).fetchAllNotes();
             Navigator.pop(context);
-            showSnackBar(context, 'Note is Added');
+            showSnackBar(context, 'Note is added');
           }
           if (state is AddNoteIFailure) {}
         },
         builder: (context, state) {
           return AbsorbPointer(
             absorbing: state is AddNoteLoading ? true : false,
-            child: Padding(
-              padding: EdgeInsets.only(
-                  right: 16,
-                  left: 16,
-                  bottom: MediaQuery.of(context).viewInsets.bottom),
-              child: const SingleChildScrollView(
-                child: AddNoteForm(),
+            child: Directionality(
+              textDirection: TextDirection.rtl,
+              child: Padding(
+                padding: EdgeInsets.only(
+                    right: 16,
+                    left: 16,
+                    bottom: MediaQuery.of(context).viewInsets.bottom),
+                child: const SingleChildScrollView(
+                  child: AddNoteForm(),
+                ),
               ),
             ),
           );

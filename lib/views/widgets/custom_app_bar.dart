@@ -17,33 +17,36 @@ class CustomAppBar extends StatelessWidget {
   final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Text(
-          title,
-          style: const TextStyle(
-            color: kPrimaryColor,
-            fontSize: 32,
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Row(
+        children: [
+          Text(
+            title,
+            style: const TextStyle(
+              color: kPrimaryColor,
+              fontSize: 32,
+            ),
           ),
-        ),
-        const Spacer(),
-        BlocProvider.of<NotesCubit>(context).isEdit
-            ? Padding(
-                padding: const EdgeInsets.only(right: 16),
-                child: CustomAppBarIcon(
-                  onPressed: () {
-                    BlocProvider.of<NotesCubit>(context).isEdit = false;
-                    Navigator.pop(context);
-                  },
-                  icon: icon2!,
-                ),
-              )
-            : const Spacer(),
-        CustomAppBarIcon(
-          onPressed: onPressed,
-          icon: icon,
-        ),
-      ],
+          const Spacer(),
+          BlocProvider.of<NotesCubit>(context).isEdit
+              ? Padding(
+                  padding: const EdgeInsets.only(right: 16),
+                  child: CustomAppBarIcon(
+                    onPressed: () {
+                      BlocProvider.of<NotesCubit>(context).isEdit = false;
+                      Navigator.pop(context);
+                    },
+                    icon: icon2!,
+                  ),
+                )
+              : const Spacer(),
+          CustomAppBarIcon(
+            onPressed: onPressed,
+            icon: icon,
+          ),
+        ],
+      ),
     );
   }
 }

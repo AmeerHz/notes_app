@@ -19,10 +19,14 @@ void showSnackBar(BuildContext context, String message) {
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       backgroundColor: Colors.black.withOpacity(0.5),
-      content: Text(
-        message,
-        style: const TextStyle(
-          color: Colors.white,
+      content: Directionality(
+        textDirection: TextDirection.rtl,
+        child: Text(
+          message,
+          style: const TextStyle(
+            color : kPrimaryColor,
+            fontSize: 17,
+          ),
         ),
       ),
     ),
