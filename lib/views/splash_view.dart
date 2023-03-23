@@ -27,7 +27,7 @@ class _SplashViewState extends State<SplashView> {
     return Scaffold(
       backgroundColor: const Color(0xff262525),
       body: Image.asset(
-        'assets/images/background.png',
+        'assets/images/finalBackground.png',
         width: MediaQuery.of(context).size.width,
       ),
     );
